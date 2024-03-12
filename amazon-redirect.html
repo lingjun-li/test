@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Amazon App Redirect Test</title>
+</head>
+<body>
+<script>
+window.onload = function() {
+    var deepLink = 'com.amazon.mobile.shopping.web://www.amazon.com/MenstrEaze-Support-Hormone-Magnesium-Vitamins/dp/B0CMGZTPJZ?maas=maas_adg_4214D112E22120189A3FC3E3F17B4E33_afap_abs&ref_=aa_maas&tag=maas';
+    var fallbackLink = 'https://www.amazon.com/MenstrEaze-Support-Hormone-Magnesium-Vitamins/dp/B0CMGZTPJZ?maas=maas_adg_4214D112E22120189A3FC3E3F17B4E33_afap_abs&ref_=aa_maas&tag=maas';
+    var iframe = document.createElement('iframe');
+    iframe.style.display = 'none';
+    iframe.src = deepLink;
+    document.body.appendChild(iframe);
+
+    // 如果设备上没有安装应用，几秒后跳转到标准链接
+    setTimeout(function() {
+        // 检查用户是否还在当前页面
+        if (document.visibilityState === 'visible') {
+            window.location.href = fallbackLink;
+        }
+    }, 2500); // 2.5秒后执行，这个时间可以根据实际情况调整
+};
+</script>
+</body>
+</html>
+
