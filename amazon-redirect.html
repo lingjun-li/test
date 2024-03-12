@@ -10,10 +10,9 @@
 window.onload = function() {
     var deepLink = 'com.amazon.mobile.shopping.web://www.amazon.com/MenstrEaze-Support-Hormone-Magnesium-Vitamins/dp/B0CMGZTPJZ?maas=maas_adg_4214D112E22120189A3FC3E3F17B4E33_afap_abs&ref_=aa_maas&tag=maas';
     var fallbackLink = 'https://www.amazon.com/MenstrEaze-Support-Hormone-Magnesium-Vitamins/dp/B0CMGZTPJZ?maas=maas_adg_4214D112E22120189A3FC3E3F17B4E33_afap_abs&ref_=aa_maas&tag=maas';
-    var iframe = document.createElement('iframe');
-    iframe.style.display = 'none';
-    iframe.src = deepLink;
-    document.body.appendChild(iframe);
+
+    // 尝试通过修改顶层窗口的位置来打开深度链接
+    window.top.location.href = deepLink;
 
     // 如果设备上没有安装应用，几秒后跳转到标准链接
     setTimeout(function() {
