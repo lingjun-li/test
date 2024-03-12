@@ -8,21 +8,19 @@
 <body>
 <script>
 window.onload = function() {
-    var deepLink = 'com.amazon.mobile.shopping.web://www.amazon.com/MenstrEaze-Support-Hormone-Magnesium-Vitamins/dp/B0CMGZTPJZ?maas=maas_adg_4214D112E22120189A3FC3E3F17B4E33_afap_abs&ref_=aa_maas&tag=maas';
-    var fallbackLink = 'https://www.amazon.com/MenstrEaze-Support-Hormone-Magnesium-Vitamins/dp/B0CMGZTPJZ?maas=maas_adg_4214D112E22120189A3FC3E3F17B4E33_afap_abs&ref_=aa_maas&tag=maas';
+    var deepLink = 'com.amazon.mobile.shopping.web://amazon.com/MenstrEaze-Support-Hormone-Magnesium-Vitamins/dp/B0CMGZTPJZ';
+    var fallbackLink = 'https://amazon.com/MenstrEaze-Support-Hormone-Magnesium-Vitamins/dp/B0CMGZTPJZ';
 
-    // 尝试通过修改顶层窗口的位置来打开深度链接
-    window.top.location.href = deepLink;
+    // 尝试打开深度链接
+    window.location = deepLink;
 
     // 如果设备上没有安装应用，几秒后跳转到标准链接
     setTimeout(function() {
-        // 检查用户是否还在当前页面
-        if (document.visibilityState === 'visible') {
-            window.location.href = fallbackLink;
-        }
+        window.location.href = fallbackLink;
     }, 2500); // 2.5秒后执行，这个时间可以根据实际情况调整
 };
 </script>
+
 </body>
 </html>
 
