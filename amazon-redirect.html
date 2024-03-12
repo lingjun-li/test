@@ -7,18 +7,22 @@
 </head>
 <body>
 <script>
-window.onload = function() {
-    var deepLink = 'com.amazon.mobile.shopping.web://amazon.com/MenstrEaze-Support-Hormone-Magnesium-Vitamins/dp/B0CMGZTPJZ';
-    var fallbackLink = 'https://amazon.com/MenstrEaze-Support-Hormone-Magnesium-Vitamins/dp/B0CMGZTPJZ';
-
-    // 尝试打开深度链接
-    window.location = deepLink;
-
-    // 如果设备上没有安装应用，几秒后跳转到标准链接
-    setTimeout(function() {
-        window.location.href = fallbackLink;
-    }, 2500); // 2.5秒后执行，这个时间可以根据实际情况调整
-};
+    window.onload = function() {
+        var deepLink = 'com.amazon.mobile.shopping.web://amazon.com/MenstrEaze-Support-Hormone-Magnesium-Vitamins/dp/B0CMGZTPJZ';
+        var fallbackLink = 'https://amazon.com/MenstrEaze-Support-Hormone-Magnesium-Vitamins/dp/B0CMGZTPJZ';
+        var iframe = document.createElement('iframe');
+        iframe.style.display = 'none';
+        iframe.src = deepLink;
+        document.body.appendChild(iframe);
+    
+        // 如果设备上没有安装应用，几秒后跳转到标准链接
+        setTimeout(function() {
+            // 检查用户是否还在当前页面
+            if (document.visibilityState === 'visible') {
+                window.location.href = fallbackLink;
+            }
+        }, 2500); // 2.5秒后执行，这个时间可以根据实际情况调整
+    };
 </script>
 
 </body>
