@@ -40,14 +40,14 @@
         var fallbackLink = 'https://www.amazon.com/MenstrEaze-Support-Hormone-Magnesium-Vitamins/dp/B0CMGZTPJZ?maas=maas_adg_4214D112E22120189A3FC3E3F17B4E33_afap_abs&ref_=aa_maas&tag=maas';
         var ua = document.getElementById("ua");
         var results = document.getElementById("results");
-        ua.textContent = navigator.userAgent;
+        ua.innerHTML = navigator.userAgent;
         if (isMobileDevice()) {
             // 如果是移动设备，尝试打开深度链接
-            results.textContent = "on mobile device";
+            results.innerHTML = "on mobile device";
             // window.location = deepLink;
         } else {
             // 如果是桌面端，直接打开备用链接
-            results.textContent = "NOT on mobile device";
+            results.innerHTML = "NOT on mobile device";
             // window.location.href = fallbackLink;
         }
     };
