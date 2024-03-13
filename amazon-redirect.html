@@ -4,8 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Amazon App Redirect Test</title>
-    <h1 id="ua"> UserAgent </h1>
-    <h1 id="results">Testing</h1>
+<!--     <h1 id="ua"> UserAgent </h1>
+    <h1 id="results">Testing</h1> -->
 </head>
 <body>
 <script>
@@ -38,17 +38,21 @@
     window.onload = function() {
         var deepLink = 'com.amazon.mobile.shopping.web://www.amazon.com/MenstrEaze-Support-Hormone-Magnesium-Vitamins/dp/B0CMGZTPJZ?maas=maas_adg_4214D112E22120189A3FC3E3F17B4E33_afap_abs&ref_=aa_maas&tag=maas';
         var fallbackLink = 'https://www.amazon.com/MenstrEaze-Support-Hormone-Magnesium-Vitamins/dp/B0CMGZTPJZ?maas=maas_adg_4214D112E22120189A3FC3E3F17B4E33_afap_abs&ref_=aa_maas&tag=maas';
-        var ua = document.getElementById("ua");
-        var results = document.getElementById("results");
+        // var ua = document.getElementById("ua");
+        // var results = document.getElementById("results");
         ua.innerHTML = navigator.userAgent;
         if (isMobileDevice()) {
             // 如果是移动设备，尝试打开深度链接
-            results.innerHTML = "on mobile device";
-            // window.location = deepLink;
+            window.location = deepLink;
+            setTimeout(function() {
+                // 检查用户是否还在当前页面
+                if (document.visibilityState === 'visible') {
+                    window.location.href = fallbackLink;
+                }
+            }, 1000); // 1秒后执行，这个时间可以根据实际情况调整
         } else {
             // 如果是桌面端，直接打开备用链接
-            results.innerHTML = "NOT on mobile device";
-            // window.location.href = fallbackLink;
+            window.location.href = fallbackLink;
         }
     };
 </script>
