@@ -9,7 +9,11 @@
 </head>
 <body>
 <script>
-    function isMobileDevice() {
+    // Don't open deep link if
+    // 1) we are on desktop
+    // 2) we are in Chrome browser
+    function isGoodForDeeplink() {
+        const UA = navigator.userAgent;
         let hasTouchScreen = false;
         if ("maxTouchPoints" in navigator) {
           hasTouchScreen = navigator.maxTouchPoints > 0;
@@ -23,14 +27,13 @@
             hasTouchScreen = true; // deprecated, but good fallback
           } else {
             // Only as a last resort, fall back to user agent sniffing
-            const UA = navigator.userAgent;
             hasTouchScreen =
               /\b(BlackBerry|webOS|iPhone|IEMobile)\b/i.test(UA) ||
               /\b(Android|Windows Phone|iPad|iPod)\b/i.test(UA);
           }
         }
-        return hasTouchScreen;
-        //return /Mobi|Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+        let isInChrome = /Chrome\/\d{3}/i.test(UA) // e.g. Chrome/122.0.0
+        return hasTouchScreen && !isInChrome;
     }
 
     
@@ -42,7 +45,7 @@
         // var results = document.getElementById("results");
         // ua.innerHTML = navigator.userAgent;
         // console.log("running");
-        if (isMobileDevice()) {
+        if (isGoodForDeeplink()) {
             // 如果是移动设备，尝试打开深度链接
             // console.log("try to open the deeplink");
             // window.location.replace(deepLink);
