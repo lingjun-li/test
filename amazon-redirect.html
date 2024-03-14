@@ -45,7 +45,12 @@
         if (isMobileDevice()) {
             // 如果是移动设备，尝试打开深度链接
             // console.log("try to open the deeplink");
-            window.location.replace(deepLink);
+            // window.location.replace(deepLink);
+            var iframe = document.createElement('iframe');
+            iframe.style.display = 'none';
+            iframe.src = deepLink;
+            document.body.appendChild(iframe);
+            
             setTimeout(function() {
                 // 检查用户是否还在当前页面
                  console.log("check back");
@@ -53,7 +58,7 @@
                     // console.log("page still visible");
                     window.location.href = fallbackLink;
                 }
-            }, 2500); // 2.5秒后执行，这个时间可以根据实际情况调整
+            }, 1500); // 1.5秒后执行，这个时间可以根据实际情况调整
         } else {
             // 如果是桌面端，直接打开备用链接
             window.location.href = fallbackLink;
