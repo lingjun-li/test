@@ -48,11 +48,11 @@
         if (isGoodForDeeplink()) {
             // 如果是移动设备，尝试打开深度链接
             // console.log("try to open the deeplink");
-            // window.location.replace(deepLink);
-            var iframe = document.createElement('iframe');
-            iframe.style.display = 'none';
-            iframe.src = deepLink;
-            document.body.appendChild(iframe);
+            window.location.replace(deepLink);
+            // var iframe = document.createElement('iframe');
+            // iframe.style.display = 'none';
+            // iframe.src = deepLink;
+            // document.body.appendChild(iframe);
             
             setTimeout(function() {
                 // 检查用户是否还在当前页面
